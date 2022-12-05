@@ -1,6 +1,6 @@
 package models.cartas;
 
-import models.Jugador;
+import models.Player;
 
 public class CartaSalirCarcel extends Carta {
     public CartaSalirCarcel() {
@@ -8,7 +8,7 @@ public class CartaSalirCarcel extends Carta {
     }
     
     @Override
-    public void hacer(Jugador jugador) {
+    public void hacer(Player jugador) {
         jugador.cartasSalirCarcel++;
     }
 }

@@ -1,6 +1,6 @@
 package models;
 
-public enum Grupo {
+public enum Group {
     MARRON(2),
     CIELO(3),
     ROSA(3),
@@ -12,7 +12,7 @@ public enum Grupo {
 
     public final int maxGrupo;
     
-    Grupo (int maxGrupo){
+    Group (int maxGrupo){
         this.maxGrupo = maxGrupo;
     }
 }

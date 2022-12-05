@@ -3,14 +3,14 @@ package models;
 import java.util.ArrayList;
 import java.io.*;
 
-public class Jugador {
+public class Player {
     String nombre;
     int dinero, posicion, turnosCarcel, cantFerrocarriles;
-    private ArrayList<Propiedad> propiedades;
+    private ArrayList<Property> propiedades;
     public int cartasSalirCarcel;
     public boolean enCarcel;
 
-    public Jugador() {
+    public Player() {
         this.nombre = null;
         this.dinero = 1500;
         this.posicion = 0;
@@ -20,7 +20,7 @@ public class Jugador {
         this.turnosCarcel = 0;
     }
     
-    public Jugador(String nombre) {
+    public Player(String nombre) {
         this.nombre = nombre;
         this.dinero = 1500;
         this.posicion = 0;
@@ -48,7 +48,7 @@ public class Jugador {
     private void bancarrota(int faltaDinero){
         Mostrar.texto("Jugador: " + this.getNombre());
         Mostrar.texto("Te faltan " + faltaDinero + "$");
-        ArrayList<Propiedad> pSinCasa = getPropiedadesSinCasas();
+        ArrayList<Property> pSinCasa = getPropiedadesSinCasas();
         if (pSinCasa.isEmpty()) {
             Mostrar.texto("No posees ninguna propiedad que puedas hipotecar");
             Mostrar.texto("Qudaste en la bancarrota");
@@ -65,11 +65,10 @@ public class Jugador {
         } else {
             Mostrar.propiedad(pSinCasa);
             int opc = Leer.opcion(pSinCasa.size(), "Escoje una propiedad: ");
-            Propiedad p = pSinCasa.get(opc - 1);
+            Property p = pSinCasa.get(opc - 1);
             this.hipotecar(p);
         }
     }
-
     public int getPosicion() {
         return posicion;
     }
@@ -82,12 +81,12 @@ public class Jugador {
         return dinero == 0;
     }
     
-    public void pagar(Jugador recividor, int cant) {
+    public void pagar(Player recividor, int cant) {
         recividor.setDinero(cant);
         setDinero(-cant);
     }
 
-    public void comprar(Propiedad propiedad) {
+    public void comprar(Property propiedad) {
         setDinero(-propiedad.getPrecio());
         propiedades.add(propiedad);
         OrdenarPropiedadesPorGrupo();
@@ -101,24 +100,24 @@ public class Jugador {
             this.dinero += 200;
             this.posicion -= 40;
         }
-        Mostrar.texto("Ahora estas en " + Tablero.getActualCasilla(this).getNombre());
+        Mostrar.texto("Ahora estas en " + Tablero.getActualCasilla(this).getName());
         Tablero.getActualCasilla(this).hacer(this);
     }
     
     public void moverA(int aPos){
         mover((40 - this.posicion + aPos) % 40);
     }
-     public void vender(Propiedad propiedad){
+     public void vender(Property propiedad){
         setDinero(propiedad.getPrecio() / 2);
         propiedad.setPropietario(null);
     }
 
-    public void hipotecar(Propiedad propiedad){
+    public void hipotecar(Property propiedad){
         propiedad.hipotecada = true;
         setDinero(propiedad.getValorHipoteca());
     }
 
-    public void pagaHipoteca(Propiedad propiedad){
+    public void pagaHipoteca(Property propiedad){
         propiedad.hipotecada = false;
         setDinero((int) (-propiedad.getPrecio() * 0.10));
     }
@@ -128,13 +127,13 @@ public class Jugador {
      * 
      */
     public void OrdenarPropiedadesPorGrupo() {
-        ArrayList<Utilidad> utilidades = new ArrayList<>();
+        ArrayList<Utility> utilidades = new ArrayList<>();
         ArrayList<Ferrocarril> ferrocarriles = new ArrayList<>();
-        ArrayList<Propiedad> ordenadas = new ArrayList<>();
+        ArrayList<Property> ordenadas = new ArrayList<>();
 
-        for (Propiedad propiedad : this.propiedades) {
-            if (propiedad instanceof Utilidad){
-                utilidades.add((Utilidad) propiedad);
+        for (Property propiedad : this.propiedades) {
+            if (propiedad instanceof Utility){
+                utilidades.add((Utility) propiedad);
             } else if (propiedad instanceof Ferrocarril) {
                 ferrocarriles.add((Ferrocarril) propiedad);
             } else {
@@ -148,7 +147,7 @@ public class Jugador {
     
     public int getCantFerrocarriles(){
         int cantFerro = 0;
-        for (Propiedad p : this.propiedades) {
+        for (Property p : this.propiedades) {
             if (p instanceof Ferrocarril) {
                 cantFerro++;
             }
@@ -159,8 +158,8 @@ public class Jugador {
 
     public int getCantUtilidades() {
         int cantUtilidades = 0;
-        for (Propiedad p : this.propiedades){
-            if (p instanceof Utilidad){
+        for (Property p : this.propiedades){
+            if (p instanceof Utility){
                 cantUtilidades++;
             }
         }
@@ -170,8 +169,8 @@ public class Jugador {
 
     public int getCantCalles() {
         int cantCalles = 0;
-        for (Propiedad p : this.propiedades){
-            if (p instanceof ColorPropiedad){
+        for (Property p : this.propiedades){
+            if (p instanceof Propertycolor){
                 cantCalles++;
             }
         }
@@ -183,7 +182,7 @@ public class Jugador {
         if (propiedades.isEmpty()) {
             string += "No pasees propiedades";
         } else {
-            for(Propiedad p : this.propiedades){
+            for(Property p : this.propiedades){
                 string += p.toString() + "\n";
             } 
         }
@@ -191,15 +190,15 @@ public class Jugador {
     }
     
     /**
-     * Metodo que retorna todas las propiedades que el jugador posee de ColorPropiedad
+     * Metodo que retorna todas las propiedades que el jugador posee de Propertycolor
      * 
-     * @return Propiedades de ColorPropiedad del jugador
+     * @return Propiedades de Propertycolor del jugador
      */
-    public ArrayList<ColorPropiedad> getListaGrupoColores(){
-        ArrayList<ColorPropiedad> lista = new ArrayList<>();
-        for (Propiedad propiedad: propiedades){
-            if ((propiedad instanceof ColorPropiedad) && (isPropietarioGrupo(((ColorPropiedad) propiedad).getGrupo()))){
-                lista.add((ColorPropiedad) propiedad);
+    public ArrayList<Propertycolor> getListaGrupoColores(){
+        ArrayList<Propertycolor> lista = new ArrayList<>();
+        for (Property propiedad: propiedades){
+            if ((propiedad instanceof Propertycolor) && (isPropietarioGrupo(((Propertycolor) propiedad).getGroup()))){
+                lista.add((Propertycolor) propiedad);
             }
         }
         return lista;
@@ -210,16 +209,16 @@ public class Jugador {
      * 
      * @return Propiedades del jugador donde pueden constuir casas
      */
-    public ArrayList<ColorPropiedad> getPropiedadesHabitables() {
-        ArrayList<ColorPropiedad> habitables = new ArrayList<>();
-        for (ColorPropiedad i: getListaGrupoColores()) {
+    public ArrayList<Propertycolor> getPropiedadesHabitables() {
+        ArrayList<Propertycolor> habitables = new ArrayList<>();
+        for (Propertycolor i: getListaGrupoColores()) {
             boolean minCasa = true;
-            for (ColorPropiedad j: getListaGrupoColores()) {
-                if(i.getGrupo() == j.getGrupo() && i.getCantCasas() > j.getCantCasas()){
+            for (Propertycolor j: getListaGrupoColores()) {
+                if(i.getGroup() == j.getGroup() && i.getCant_House() > j.getCant_House()){
                     minCasa = false;
                 }
             }
-            if ((minCasa) && (i.getCantCasas() != 5)){
+            if ((minCasa) && (i.getCant_House() != 5)){
                 habitables.add(i);
             }
         }
@@ -231,10 +230,10 @@ public class Jugador {
      * 
      * @return Propiedades sin casa del jugador
      */
-    public ArrayList<Propiedad> getPropiedadesSinCasas(){
-        ArrayList<Propiedad> sinCasas = new ArrayList<>();
-        for (Propiedad propiedad : this.propiedades) {
-            if ((propiedad instanceof ColorPropiedad) && (((ColorPropiedad) propiedad).getCantCasas() != 0));
+    public ArrayList<Property> getPropiedadesSinCasas(){
+        ArrayList<Property> sinCasas = new ArrayList<>();
+        for (Property propiedad : this.propiedades) {
+            if ((propiedad instanceof Propertycolor) && (((Propertycolor) propiedad).getCant_House() != 0));
             else {
                 sinCasas.add(propiedad);
             }
@@ -247,9 +246,9 @@ public class Jugador {
      * 
      * @return Propiedades hipotecados del jugador
      */
-    public ArrayList<Propiedad> getPropiedadesHipotecadas(){
-        ArrayList<Propiedad> hipotecadas = new ArrayList<>();
-        for (Propiedad propiedad : this.propiedades) {
+    public ArrayList<Property> getPropiedadesHipotecadas(){
+        ArrayList<Property> hipotecadas = new ArrayList<>();
+        for (Property propiedad : this.propiedades) {
             if (propiedad.hipotecada){
                 hipotecadas.add(propiedad);
             }
@@ -262,7 +261,7 @@ public class Jugador {
      * 
      * @return true si el jugador es el propietario, false en caso contrario
      */
-    private boolean isPropietario(Propiedad propiedad) {
+    private boolean isPropietario(Property propiedad) {
         return this.propiedades.contains(propiedad);
     }
 
@@ -271,10 +270,10 @@ public class Jugador {
      * 
      * @return true si el jugador es el propietario, false en caso contrario
      */
-    public boolean isPropietarioGrupo(Grupo grupo){
+    public boolean isPropietarioGrupo(Group grupo){
         int contador = 0;
-        for (Propiedad propiedad : this.propiedades){
-            if ((propiedad instanceof ColorPropiedad) && (((ColorPropiedad) propiedad).getGrupo() == grupo)){
+        for (Property propiedad : this.propiedades){
+            if ((propiedad instanceof Propertycolor) && (((Propertycolor) propiedad).getGroup() == grupo)){
                 contador++;
             }
         }
@@ -286,7 +285,7 @@ public class Jugador {
         String string = "\nEstado del Jugador\n\n";
         string += "Ficha: " + this.nombre + "\n"
                 + "Balance: " + this.dinero + "\n"
-                + "Posicion actual: " + Tablero.tablero[this.posicion].getNombre() + "\n"
+                + "Posicion actual: " + Tablero.tablero[this.posicion].getName() + "\n"
                 + "Condicion: " + ((enCarcel) ? "En la carcel" : "Jugando")  + "\n"
                 + "Propiedades: " + propiedades.size()  + "\n"
                 + "Calles: " + getCantCalles()  + "\n"

@@ -1,6 +1,6 @@
 package models.cartas;
 
-import models.Jugador;
+import models.Player;
 
 public class CartaTomarPagar extends Carta {
     private int cant;
@@ -18,7 +18,7 @@ public class CartaTomarPagar extends Carta {
     }
     
     @Override
-    public void hacer(Jugador jugador) {
+    public void hacer(Player jugador) {
        jugador.setDinero(cant);
     }
 }

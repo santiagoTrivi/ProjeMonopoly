@@ -1,6 +1,6 @@
 package models.cartas;
 
-import models.Jugador;
+import models.Player;
 import models.Tablero;
 
 public class CartaMover extends Carta {
@@ -12,7 +12,7 @@ public class CartaMover extends Carta {
     }
 
     @Override
-    public void hacer(Jugador jugador) {
+    public void hacer(Player jugador) {
         jugador.moverA(nCasilla);
     }
 }

@@ -7,30 +7,30 @@ public class Tablero {
     public static Casilla[] tablero = new Casilla[40];
     public static Baraja arcaComunal = new Baraja();
     public static Baraja fortuna = new Baraja();
-    public static ArrayList<Jugador> jugadores;
+    public static ArrayList<Player> jugadores;
     
     public static void iniciar() {
-        ArrayList<ColorPropiedad> propiedades = Archivo.getPropiedades();
+        ArrayList<Propertycolor> propiedades = File.getPropiedades();
         
         Casilla salida = new Casilla(0, "SALIDA") {
             @Override
-            public void hacer(Jugador actualJugador) {}
+            public void hacer(Player actualJugador) {}
         };
         
         Casilla deVisita = new Casilla(10, "DE VISITA NADA MÁS ") {
             @Override
-            public void hacer(Jugador actualJugador) {}
+            public void hacer(Player actualJugador) {}
         };
         
         Casilla paradaLibre = new Casilla(20, "PARADA LIBRE") {
             @Override
-            public void hacer(Jugador actualJugador) {}
+            public void hacer(Player actualJugador) {}
         };
         
         Casilla irCarcel = new Casilla(30, "VÁYASE A LA CÁRCEL") {
             @Override
-            public void hacer(Jugador actualJugador) { 
-                       Carcel.enviarACarcel(actualJugador);
+            public void hacer(Player actualJugador) { 
+                       Jail.sendtojail(actualJugador);
             }
         };
         
@@ -38,7 +38,7 @@ public class Tablero {
         tablero[1] = propiedades.get(0);
         tablero[2] = new TomarCarta(2, "ARCA COMUNAL", arcaComunal);
         tablero[3] = propiedades.get(0);
-        tablero[4] = new Impuesto(4, "IMPUESTO SOBRE INGRESOS PÁGUESE", 200);
+        tablero[4] = new Taxes(4, "IMPUESTO SOBRE INGRESOS PÁGUESE", 200);
         tablero[5] = new Ferrocarril(5, "FERROCARRIL READING");
         tablero[6] = propiedades.get(2);
         tablero[7] = new TomarCarta(7, "FORTUNA", fortuna);
@@ -46,7 +46,7 @@ public class Tablero {
         tablero[9] = propiedades.get(4);
         tablero[10] = deVisita;
         tablero[11] = propiedades.get(5);
-        tablero[12] = new Utilidad(12, "COMPAÑÍA DE ELECTRICIDAD");
+        tablero[12] = new Utility(12, "COMPAÑÍA DE ELECTRICIDAD");
         tablero[13] = propiedades.get(6);
         tablero[14] = propiedades.get(7);
         tablero[15] = new Ferrocarril(15, "FERROCARRIL PENSYLVANIA");
@@ -62,7 +62,7 @@ public class Tablero {
         tablero[25] = new Ferrocarril(25, "FERROCARRIL B. & O.");
         tablero[26] = propiedades.get(14);
         tablero[27] = propiedades.get(15);
-        tablero[28] = new Utilidad(28, "COMPAÑÍA DE AGUA");
+        tablero[28] = new Utility(28, "COMPAÑÍA DE AGUA");
         tablero[29] = propiedades.get(16);
         tablero[30] = irCarcel;
         tablero[31] = propiedades.get(17);
@@ -72,21 +72,21 @@ public class Tablero {
         tablero[35] = new Ferrocarril(35, "FERROCARRIL VÍA RÁPIDA");
         tablero[36] = new TomarCarta(36, "FORTUNA", fortuna);
         tablero[37] = propiedades.get(20);
-        tablero[38] = new Impuesto(38, "IMPUESTO SOBRE POSESIONES DE LUJO PÁGUENSE", 100);
+        tablero[38] = new Taxes(38, "IMPUESTO SOBRE POSESIONES DE LUJO PÁGUENSE", 100);
         tablero[39] = propiedades.get(21);
         iniciarBarajas();
     }
 
-    public static Casilla getActualCasilla(Jugador actualJugador) {
+    public static Casilla getActualCasilla(Player actualJugador) {
         int pos = actualJugador.getPosicion();
         return tablero[pos];
     }
 
-    public static void setJugadores(ArrayList<Jugador> actuales) {
+    public static void setJugadores(ArrayList<Player> actuales) {
         jugadores = actuales;
     }
     
-    public static ArrayList<Jugador> getJugadores() {
+    public static ArrayList<Player> getJugadores() {
         return jugadores;
     }
 

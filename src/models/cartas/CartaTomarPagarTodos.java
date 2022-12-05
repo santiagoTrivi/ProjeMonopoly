@@ -1,13 +1,13 @@
 package models.cartas;
 
 import java.util.ArrayList;
-import models.Jugador;
+import models.Player;
 
 public class CartaTomarPagarTodos extends CartaTomarPagar {
-    private ArrayList<Jugador> jugadores;
+    private ArrayList<Player> jugadores;
     private int cant;
 
-    public CartaTomarPagarTodos(ArrayList<Jugador> jugadores, int cant, String descrip){
+    public CartaTomarPagarTodos(ArrayList<Player> jugadores, int cant, String descrip){
         super(cant, crearMsj(cant, descrip));
         this.cant = cant;
         this.jugadores = jugadores;
@@ -18,9 +18,9 @@ public class CartaTomarPagarTodos extends CartaTomarPagar {
     }
 
     @Override
-    public void hacer(Jugador jugador) {
+    public void hacer(Player jugador) {
         jugador.setDinero(cant * jugadores.size());
-        for(Jugador j : jugadores){
+        for(Player j : jugadores){
             j.setDinero(cant);
         }
     }

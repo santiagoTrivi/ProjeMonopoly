@@ -1,6 +1,6 @@
 package models;
 
-public class Ferrocarril extends Propiedad {
+public class Ferrocarril extends Property {
 
     public Ferrocarril(int pos, String n) {
         super(pos, n, 200, 100);
@@ -24,7 +24,7 @@ public class Ferrocarril extends Propiedad {
     @Override
     public String toString() {
         String string = "";
-        string += "\n\t" + this.nombre + "\n\n"
+        string += "\n\t" + this.name + "\n\n"
                 + "Renta: 25$" + "\n"
                 + "Con 2 Ferrocarriles: 50$" + "\n"
                 + "Con 3 Ferrocarriles: 100$" + "\n"
@@ -34,7 +34,7 @@ public class Ferrocarril extends Propiedad {
     }
 
     @Override
-    public void hacer(Jugador actualJugador) {
+    public void hacer(Player actualJugador) {
         if(propietario == actualJugador) {
            // No hacer nada
         } else if ((!hipotecada) && (propietario != null)) {

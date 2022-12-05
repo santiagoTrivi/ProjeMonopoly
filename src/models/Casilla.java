@@ -1,34 +1,34 @@
 package models;
 
 public abstract class Casilla {
-    int posicion;
-    String nombre;
+    int position;
+    String name;
 
     public Casilla() {
-        this.posicion = 0;
-        this.nombre = null;
+        this.position = 0;
+        this.name = null;
     }
     
     public Casilla(int posicion, String nombre) {
-        this.posicion = posicion;
-        this.nombre = nombre;
+        this.position = posicion;
+        this.name = nombre;
     }
 
-    public int getPosicion() {
-        return this.posicion;
+    public int getPosition() {
+        return this.position;
     }
 
-    public void setPosicion(int pos) {
-         this.posicion = pos;
+    public void setPosition(int pos) {
+         this.position = pos;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getName() {
+        return name;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setName(String name) {
+        this.name = name;
     }
     
-    public abstract void hacer(Jugador actualJugador);
+    public abstract void hacer(Player actualJugador);
 }

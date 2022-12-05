@@ -48,7 +48,7 @@ public class Mostrar {
         System.out.println("6. Hipoteca");
     }
     
-    public static void propiedad(ColorPropiedad propiedad){
+    public static void propiedad(Propertycolor propiedad){
         System.out.println(propiedad.toString());
     }
     
@@ -77,17 +77,17 @@ public class Mostrar {
         
     }
 
-    public static void colorPropiedad(ArrayList<ColorPropiedad> pHabitables) {
+    public static void colorPropiedad(ArrayList<Propertycolor> pHabitables) {
         System.out.println("\nTienes estas propiedades: ");
         for (int i = 0; i < pHabitables.size(); i++) {
-            System.out.println(i + ". " + pHabitables.get(i).getNombre());   
+            System.out.println(i + ". " + pHabitables.get(i).getName());   
         }
     }
 
-    public static void propiedad(ArrayList<Propiedad> pSinCasa) {
+    public static void propiedad(ArrayList<Property> pSinCasa) {
         System.out.println("\nTienes estas propiedades: ");
         for (int i = 0; i < pSinCasa.size(); i++) {
-            System.out.println(i + ". " + pSinCasa.get(i).getNombre());   
+            System.out.println(i + ". " + pSinCasa.get(i).getName());   
         }
     }
 

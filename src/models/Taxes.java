@@ -1,15 +1,15 @@
 package models;
 
-public class Impuesto extends Casilla {
+public class Taxes extends Casilla {
     private int impuesto;
 
-    public Impuesto(int pos, String n, int impuesto){
+    public Taxes(int pos, String n, int impuesto){
         super(pos,n);
         this.impuesto = impuesto;
     }
 
     @Override
-    public void hacer(Jugador jugador) {
+    public void hacer(Player jugador) {
         jugador.setDinero(-this.impuesto);
     }
 }

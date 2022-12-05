@@ -1,6 +1,6 @@
 package models.cartas;
 
-import models.Jugador;
+import models.Player;
 import models.Tablero;
 
 public class CartaMoverA extends Carta {
@@ -11,7 +11,7 @@ public class CartaMoverA extends Carta {
         this.indexs = indexs;
     }
 
-    public void hacer(Jugador jugador){
+    public void hacer(Player jugador){
         int minDistancia = 40;
 
         for(int i = 0; i < indexs.length; i++){

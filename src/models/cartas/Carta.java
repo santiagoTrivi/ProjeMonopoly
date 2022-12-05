@@ -1,6 +1,6 @@
 package models.cartas;
 
-import models.Jugador;
+import models.Player;
 import models.Mostrar;
 
 public abstract class Carta {
@@ -10,10 +10,10 @@ public abstract class Carta {
         this.description = description;
     }
 
-    public void usar(Jugador jugador){
+    public void usar(Player jugador){
         Mostrar.carta(this.description);
         hacer(jugador);
     }
 
-    public abstract void hacer(Jugador jugador);
+    public abstract void hacer(Player jugador);
 }

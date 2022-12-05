@@ -1,7 +1,7 @@
 package models.cartas;
 
-import models.Carcel;
-import models.Jugador;
+import models.Jail;
+import models.Player;
 
 public class CartaIrCarcel extends Carta {
     public CartaIrCarcel() {
@@ -9,7 +9,7 @@ public class CartaIrCarcel extends Carta {
     }
 
     @Override
-    public void hacer(Jugador jugador){
-        Carcel.enviarACarcel(jugador);
+    public void hacer(Player jugador){
+        Jail.sendtojail(jugador);
     }
 }

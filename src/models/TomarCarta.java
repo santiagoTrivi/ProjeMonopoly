@@ -13,7 +13,7 @@ public class TomarCarta extends Casilla {
     }
     
     @Override
-    public void hacer(Jugador actualJugador) {
+    public void hacer(Player actualJugador) {
         baraja.tomarCarta(actualJugador);
     }
 }

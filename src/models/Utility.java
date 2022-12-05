@@ -1,8 +1,8 @@
 package models;
 
-public class Utilidad extends Propiedad {
+public class Utility extends Property {
     
-    public Utilidad(int pos, String n) {
+    public Utility(int pos, String n) {
         super(pos, n, 150, 75);
     }
     
@@ -10,9 +10,9 @@ public class Utilidad extends Propiedad {
         int renta = 0;
         switch (propietario.getCantUtilidades()) {
             case 1:
-                renta = 4 * Dado.getResultado();
+                renta = 4 * Dice.getResultado();
             case 2:
-                renta = 10 * Dado.getResultado();
+                renta = 10 * Dice.getResultado();
         }
         return renta;
     }
@@ -24,7 +24,7 @@ public class Utilidad extends Propiedad {
     @Override
     public String toString() {
         String string = "";
-        string += "\n\t" + this.nombre + "\n\n"
+        string += "\n\t" + this.name + "\n\n"
                 + "Renta: 4 veces el resultado de lanzar los dados" + "\n"
                 + "Con 2 utilidades: 10 veces el resultado de lanzar los dados" + "\n"
                 + "Hipoteca: " + this.valorHipoteca + "$" + "\n\n";
@@ -32,7 +32,7 @@ public class Utilidad extends Propiedad {
     }
 
     @Override
-    public void hacer(Jugador actualJugador) {
+    public void hacer(Player actualJugador) {
         if(propietario == actualJugador) {
            // No hacer nada
         } else if ((!hipotecada) && (propietario != null)) {

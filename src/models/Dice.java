@@ -2,7 +2,7 @@ package models;
 
 import java.util.Random;
 
-public class Dado {
+public class Dice {
     static Random random = new Random();
     public static int dado1, dado2;
     

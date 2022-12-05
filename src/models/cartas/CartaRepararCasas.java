@@ -1,7 +1,7 @@
 package models.cartas;
 
-import models.Jugador;
-import models.ColorPropiedad;
+import models.Player;
+import models.Propertycolor;
 
 public class CartaRepararCasas extends CartaTomarPagar {
     private int pCasa;
@@ -13,20 +13,20 @@ public class CartaRepararCasas extends CartaTomarPagar {
         this.pHotel = pHotel;
     }
 
-    private int calcularTarifa(Jugador jugador){
+    private int calcularTarifa(Player jugador){
         int tarifa = 0;
-        for(ColorPropiedad cp : jugador.getListaGrupoColores()){
-            if(cp.getCantCasas() == 5){
+        for(Propertycolor cp : jugador.getListaGrupoColores()){
+            if(cp.getCant_House() == 5){
                 tarifa += pHotel;
-            } else if (cp.getCantCasas() > 0) {
-                tarifa += pCasa * cp.getCantCasas();
+            } else if (cp.getCant_House() > 0) {
+                tarifa += pCasa * cp.getCant_House();
             }
         }
         return tarifa;
     }
 
     @Override
-    public void hacer(Jugador jugador){
+    public void hacer(Player jugador){
         jugador.setDinero(-calcularTarifa(jugador));
     }
 }

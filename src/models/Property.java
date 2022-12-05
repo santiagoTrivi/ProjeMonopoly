@@ -1,19 +1,19 @@
 package models;
 
-public class Propiedad extends Casilla {
+public class Property extends Casilla {
     public final int precio;
-    public Jugador propietario;
+    public Player propietario;
     public int valorHipoteca;
     public boolean hipotecada;
     
-    public Propiedad(){
+    public Property(){
         super();
         this.precio = 0;
         this.valorHipoteca = 0;
         this.hipotecada = false;
     }
     
-    public Propiedad(int pos, String nombre, int precio, int hipo){
+    public Property(int pos, String nombre, int precio, int hipo){
         super(pos, nombre);
         this.precio = precio;
         this.valorHipoteca = hipo;
@@ -24,11 +24,11 @@ public class Propiedad extends Casilla {
         return this.precio;
     }
 
-    public Jugador getPropietario() {
+    public Player getPropietario() {
         return this.propietario;
     }
     
-    public void setPropietario(Jugador jugador) {
+    public void setPropietario(Player jugador) {
         this.propietario = jugador;
     }
     
@@ -40,13 +40,13 @@ public class Propiedad extends Casilla {
         return this.valorHipoteca;
     }
     
-    public void comprado(Jugador actualJugador) {
+    public void comprado(Player actualJugador) {
         setPropietario(actualJugador);
         actualJugador.comprar(this);
     }
     
-    public void ofertar(Jugador actualJugador){
-        Mostrar.texto("Te gustaria comprar esta propiedad: " + nombre + " por " + precio + "$");
+    public void ofertar(Player actualJugador){
+        Mostrar.texto("Te gustaria comprar esta propiedad: " + name + " por " + precio + "$");
         int op = Leer.opcion(2, "1. Si\t\t2. No ");
         if(op == 1){
             comprado(actualJugador);
@@ -54,5 +54,5 @@ public class Propiedad extends Casilla {
     }
 
     @Override
-    public void hacer(Jugador actualJugador) {}
+    public void hacer(Player actualJugador) {}
 }

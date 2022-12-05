@@ -1,18 +1,14 @@
 package models;
 
 import java.util.Scanner;
-import java.io.FileReader;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
-public class Archivo {
+public class File {
     
-    public static ArrayList<ColorPropiedad> getPropiedades() {
-        ArrayList<ColorPropiedad> propiedades = new ArrayList<>();
-        ColorPropiedad tempCP = new ColorPropiedad();
+    public static ArrayList<Propertycolor> getPropiedades() {
+        ArrayList<Propertycolor> propiedades = new ArrayList<>();
+        Propertycolor tempCP = new Propertycolor();
         try {
             Scanner leer = new Scanner(new FileReader("src\\models\\propiedades.txt"));
             int pos = 0;
@@ -21,7 +17,7 @@ public class Archivo {
             int[] r = new int[6];
             int cos = 0;
             int hipo = 0;
-            Grupo g = null;
+            Group g = null;
             int contador = 0;
             while (leer.hasNextLine()) {
                 contador++;
@@ -38,44 +34,44 @@ public class Archivo {
                 switch (contador) {
                     case 1:
                     case 2:
-                        g = Grupo.MARRON;
+                        g = Group.MARRON;
                         break;
                     case 3:
                     case 4:
                     case 5:
-                        g = Grupo.CIELO;
+                        g = Group.CIELO;
                         break;
                     case 6:
                     case 7:
                     case 8:
-                        g = Grupo.ROSA;
+                        g = Group.ROSA;
                         break;
                     case 9:
                     case 10:
                     case 11:
-                        g = Grupo.NARANJA;
+                        g = Group.NARANJA;
                         break;
                     case 12:
                     case 13:
                     case 14:
-                        g = Grupo.ROJO;
+                        g = Group.ROJO;
                         break;
                     case 15:
                     case 16:
                     case 17:
-                        g = Grupo.AMARRILLO;
+                        g = Group.AMARRILLO;
                         break;
                     case 18:
                     case 19:
                     case 20:
-                        g = Grupo.VERDE;
+                        g = Group.VERDE;
                         break;
                     case 21:
                     case 22:
-                        g = Grupo.AZUL;
+                        g = Group.AZUL;
                         break;
                 }
-                tempCP = new ColorPropiedad(pos, n, p, r, cos, hipo, g);
+                tempCP = new Propertycolor(pos, n, p, r, cos, hipo, g);
                 propiedades.add(tempCP);
             }
         } catch (FileNotFoundException fnfe) {

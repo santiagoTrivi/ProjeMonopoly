@@ -8,7 +8,7 @@ import java.util.Collections;
 public class Baraja {
     private ArrayList<Carta> baraja = new ArrayList<>();
 
-    public void tomarCarta(Jugador jugador){
+    public void tomarCarta(Player jugador){
         Carta carta;
         carta = baraja.remove(0);
         ponerAbajo(carta);
