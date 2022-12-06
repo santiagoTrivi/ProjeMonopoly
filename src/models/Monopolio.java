@@ -3,6 +3,7 @@ package models;
 import java.util.ArrayList;
 
 public class Monopolio {
+    
     public static final String[] FICHAS = new String[] {"PLANCHA", "CARRO", "ZAPATO", "CARRETILLA"};
     
     public static ArrayList<Player> crearJugadores(int nJugadores){

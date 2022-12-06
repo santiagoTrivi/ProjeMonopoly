@@ -122,10 +122,6 @@ public class Player {
         setDinero((int) (-propiedad.getPrecio() * 0.10));
     }
     
-    /**
-     * Metodo que ordena todas las porpiedades de un jugador
-     * 
-     */
     public void OrdenarPropiedadesPorGrupo() {
         ArrayList<Utility> utilidades = new ArrayList<>();
         ArrayList<Ferrocarril> ferrocarriles = new ArrayList<>();
@@ -188,12 +184,7 @@ public class Player {
         }
         return string;
     }
-    
-    /**
-     * Metodo que retorna todas las propiedades que el jugador posee de Propertycolor
-     * 
-     * @return Propiedades de Propertycolor del jugador
-     */
+
     public ArrayList<Propertycolor> getListaGrupoColores(){
         ArrayList<Propertycolor> lista = new ArrayList<>();
         for (Property propiedad: propiedades){
@@ -204,11 +195,6 @@ public class Player {
         return lista;
     }
 
-    /**
-     * Metodo que retorna las propiedades donde se puede constriuir casas
-     * 
-     * @return Propiedades del jugador donde pueden constuir casas
-     */
     public ArrayList<Propertycolor> getPropiedadesHabitables() {
         ArrayList<Propertycolor> habitables = new ArrayList<>();
         for (Propertycolor i: getListaGrupoColores()) {
@@ -225,11 +211,6 @@ public class Player {
         return habitables;
     }
 
-    /**
-     * Metodo que retorna las propiedades sin casas, estas puedes ser hipotecadas
-     * 
-     * @return Propiedades sin casa del jugador
-     */
     public ArrayList<Property> getPropiedadesSinCasas(){
         ArrayList<Property> sinCasas = new ArrayList<>();
         for (Property propiedad : this.propiedades) {
@@ -241,11 +222,6 @@ public class Player {
         return sinCasas;
     }
 
-    /**
-     * Metodo que retorna las propiedades hipotecadas del jugador
-     * 
-     * @return Propiedades hipotecados del jugador
-     */
     public ArrayList<Property> getPropiedadesHipotecadas(){
         ArrayList<Property> hipotecadas = new ArrayList<>();
         for (Property propiedad : this.propiedades) {
@@ -256,20 +232,10 @@ public class Player {
         return hipotecadas;
     }
 
-    /**
-     * Metodo que verifica si un jugador es dueño de una propiedad
-     * 
-     * @return true si el jugador es el propietario, false en caso contrario
-     */
     private boolean isPropietario(Property propiedad) {
         return this.propiedades.contains(propiedad);
     }
-
-    /**
-     * Metodo que verifica si un jugador es dueño de una propiedad
-     * 
-     * @return true si el jugador es el propietario, false en caso contrario
-     */
+    
     public boolean isPropietarioGrupo(Group grupo){
         int contador = 0;
         for (Property propiedad : this.propiedades){
